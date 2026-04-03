@@ -1,3 +1,43 @@
 spring:
   application:
     name: zurl-api
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      timeout: 3s
+      lettuce:
+        pool:
+          enabled: false
+
+  cache:
+    type: redis
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/zurl_db
+    username: postgres
+    password: "0000"
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 10
+      connection-timeout: 30000     # Max wait for a free connection
+      max-lifetime: 1740000         # Retire connections at 29 mins
+      
+      pool-name: HikariCollection
+      leak-detection-threshold: 60000
+
+      # 3. Network/Driver Level Timeouts
+      # Prevent the app from hanging if the DB is unreachable
+      data-source-properties:
+        connectTimeout: 10  
+        socketTimeout: 30 
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+
+server:
+  port: 222  
