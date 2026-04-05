@@ -6,7 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Component;
 
-import com.zurl.zurl_api.service.RedisService;
+import com.zurl.zurl_api.serviceImpl.RedisService;
 
 @SpringBootApplication
 public class ZurlApiApplication {
@@ -17,7 +17,7 @@ public class ZurlApiApplication {
 }
 
 @Component
-class DummyDataInit implements CommandLineRunner {
+class RedisTest implements CommandLineRunner {
 	
 	@Autowired
 	RedisService redisService;

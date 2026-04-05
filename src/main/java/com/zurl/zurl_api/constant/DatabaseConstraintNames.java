@@ -1,8 +1,8 @@
 package com.zurl.zurl_api.constant;
 
-public class DatabaseConstraintNames {
+public interface DatabaseConstraintNames {
 	
-	public static final String UNIQUE_ENCODED_KEY = "uniquezurlencodedkey";
+	static String UNIQUE_ENCODED_KEY = "uniquezurlencodedkey";
 	
-	public static final String UNIQUE_LONG_URL = "uniquezurlongurl";
+	static String UNIQUE_LONG_URL = "uniquezurlongurl";
 }

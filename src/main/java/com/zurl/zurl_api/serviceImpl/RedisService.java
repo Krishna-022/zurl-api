@@ -1,4 +1,4 @@
-package com.zurl.zurl_api.service;
+package com.zurl.zurl_api.serviceImpl;
 
 import java.util.concurrent.TimeUnit;
 import org.springframework.data.redis.core.RedisTemplate;
