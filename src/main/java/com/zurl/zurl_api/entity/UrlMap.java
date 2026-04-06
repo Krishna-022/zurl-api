@@ -16,8 +16,7 @@ import jakarta.persistence.UniqueConstraint;
 
 @Entity
 @Table(uniqueConstraints = {
-		@UniqueConstraint(name = DatabaseConstraintNames.UNIQUE_ENCODED_KEY, columnNames = "encoded_key"),
-		@UniqueConstraint(name = DatabaseConstraintNames.UNIQUE_LONG_URL, columnNames = "long_url") })
+		@UniqueConstraint(name = DatabaseConstraintNames.UNIQUE_ENCODED_KEY, columnNames = "encoded_key")})
 public class UrlMap {
 	
 	@Id
@@ -35,6 +34,10 @@ public class UrlMap {
 
 	public String getEncodedKey() {
 		return encodedKey;
+	}
+	
+	public Long getId() {
+		return id;
 	}
 
 	public void setEncodedKey(String encodedKey) {
@@ -84,6 +87,10 @@ public class UrlMap {
 		this.encodedKey = encodedKey;
 		this.longUrl = longUrl;
 		this.createdAt = createdAt;
+	}
+	
+	public UrlMap(String longUrl) {
+		this.longUrl = longUrl;
 	}
 
 	public UrlMap() {}
