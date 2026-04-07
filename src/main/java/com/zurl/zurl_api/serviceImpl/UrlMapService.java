@@ -2,7 +2,6 @@ package com.zurl.zurl_api.serviceImpl;
 
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.dao.DataAccessException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,9 +27,7 @@ public class UrlMapService {
 		String longUrl = null;
 		try {
 			longUrl = redisService.get(key, String.class);
-		} catch (DataAccessException dataAccessException) {
-			
-		}
+		} catch (Exception exception) {}
 		
 		if (longUrl == null) {
 			Optional<UrlMap> urlMapOptional =  urlMapRepo.findByEncodedKey(key);
@@ -40,9 +37,7 @@ public class UrlMapService {
 		 		longUrl = urlMapOptional.get().getLongUrl();
 		 		try {
 					redisService.set(key, longUrl);
-				} catch (DataAccessException dataAccessException) {
-				
-				}
+				} catch (Exception exception) {}
 		 	}
 		}
 		return ResponseEntity
@@ -60,9 +55,7 @@ public class UrlMapService {
 		
 		try {
 			redisService.set(key, longUrl);
-		} catch (DataAccessException dataAccessException) {
-		
-		}
+		} catch (Exception exception) {}
 		return getShortUrl(key);
 	}
 	

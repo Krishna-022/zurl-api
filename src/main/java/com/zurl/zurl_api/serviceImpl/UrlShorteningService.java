@@ -49,9 +49,9 @@ public class UrlShorteningService implements iUrlShorteningService {
         return feistelDecrypt(value);
     }
 
-    private long feistelEncrypt(long x) {
-        int left = (int) ((x >>> HALF_BITS) & MASK21);
-        int right = (int) (x & MASK21);
+    private long feistelEncrypt(long id) {
+        int left = (int) ((id >>> HALF_BITS) & MASK21);
+        int right = (int) (id & MASK21);
 
         for (int round = 0; round < ROUNDS; round++) {
             int newLeft = right;
@@ -63,9 +63,9 @@ public class UrlShorteningService implements iUrlShorteningService {
         return (((long) left) << HALF_BITS) | (right & MASK21);
     }
 
-    private long feistelDecrypt(long x) {
-        int left = (int) ((x >>> HALF_BITS) & MASK21);
-        int right = (int) (x & MASK21);
+    private long feistelDecrypt(long feistelCode) {
+        int left = (int) ((feistelCode >>> HALF_BITS) & MASK21);
+        int right = (int) (feistelCode & MASK21);
 
         for (int round = ROUNDS - 1; round >= 0; round--) {
             int newRight = left;
@@ -94,7 +94,7 @@ public class UrlShorteningService implements iUrlShorteningService {
                   |  (digest[2] & 0xFF);
 
             return v & (int) MASK21;
-        } catch (Exception e) {
+        } catch (Exception exception) {
             throw new ServiceUnavailableException(ExceptionConstants.SERVICE_UNAVAILABLE);
         }
     }
