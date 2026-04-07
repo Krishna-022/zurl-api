@@ -23,7 +23,7 @@
 
 ---
 
-## 🚀 What It Does
+## What It Does
 
 - ✂️ Shortens long URLs into fixed **7-character keys**
 - 🔁 Redirects short links using **HTTP 302**
@@ -138,9 +138,8 @@ The app is configured through `src/main/resources/application.yaml`.
   ],
   "timestamp": "2026-04-07T10:30:00Z"
 }
-```
 
-## 👨‍💻 Closing Note
+```
 
 ## 👨‍💻 Closing Note
 
