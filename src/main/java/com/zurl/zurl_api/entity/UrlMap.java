@@ -25,7 +25,7 @@ public class UrlMap {
 	
 	private String encodedKey;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, columnDefinition = "TEXT")
 	private String longUrl;
 	
 	@CreationTimestamp

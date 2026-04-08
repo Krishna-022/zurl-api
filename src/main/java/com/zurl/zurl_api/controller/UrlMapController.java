@@ -1,7 +1,12 @@
 package com.zurl.zurl_api.controller;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import com.zurl.zurl_api.constant.ApiPathConstants;
 import com.zurl.zurl_api.dto.in.LongUrlInDto;
@@ -16,10 +21,17 @@ public class UrlMapController {
 	private final UrlMapService urlMapService;
 	
 	@PostMapping(ApiPathConstants.URL)
+	@ResponseStatus(HttpStatus.CREATED)
 	public ShortUrlOutDto shortTheUrl(@RequestBody @Valid LongUrlInDto longUrlInDto) {
 		UrlValidator.validateUrl(longUrlInDto.getLongUrl());
 		String shortUrl = urlMapService.shortTheUrl(longUrlInDto.getLongUrl());
 		return new ShortUrlOutDto(shortUrl);
+	}
+	
+	@GetMapping(ApiPathConstants.KEY)
+	public ResponseEntity<Void> redirectToLongUrl(@PathVariable String key) {
+		UrlValidator.validateKey(key);
+		return urlMapService.redirectToLongUrl(key);
 	}
 
 	public UrlMapController(UrlMapService urlMapService) {
