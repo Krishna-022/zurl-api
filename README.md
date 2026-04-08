@@ -14,11 +14,6 @@
   A compact backend service for shortening long URLs into clean, shareable links
   and resolving them with fast redirects.
 </p>
-
-<p>
-  Built with <strong>Spring Boot</strong>, <strong>PostgreSQL</strong>, and <strong>Redis</strong>. ✨
-</p>
-
 </div>
 
 ---
